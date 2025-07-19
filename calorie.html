@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE CRAVE-WELL | Calorie Calculator</title>
+<link rel="stylesheet" href="calorie.css">
+<style>
+body {
+    background: orange;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+header img {
+    height: 50px;
+}
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+nav a:hover {
+    color: #ff7043;
+}
+footer {
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 10px;
+}
+.calorie-container {
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+}
+.calorie-container input, .calorie-container button, .calorie-container select {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+}
+.calorie-container button {
+    background-color: #ff7043;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.calorie-container button:hover {
+    background-color: #f4511e;
+}
+</style>
+</head>
+<body>
+<header>
+    <div style="display: flex; align-items: center;">
+        <img src="images/logo.png" alt="Crave-Well Logo">
+        <h1 style="margin-left: 10px; font-size: 1.5rem; color: #1976d2;">THE CRAVE-WELL</h1>
+    </div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="menu.html">Menu</a>
+        <a href="login.html">Login/Signup</a>
+        <a href="calorie.html">Calorie Calculator</a>
+    </nav>
+</header>
+<section class="calorie-container">
+    <h2>Calculate Your Daily Calorie Needs</h2>
+    <input type="number" id="age" placeholder="Age">
+    <input type="number" id="weight" placeholder="Weight (kg)">
+    <input type="number" id="height" placeholder="Height (cm)">
+    <select id="activity">
+        <option value="1.2">Sedentary</option>
+        <option value="1.375">Lightly active</option>
+        <option value="1.55">Moderately active</option>
+        <option value="1.725">Very active</option>
+    </select>
+    <button onclick="calculateCalories()">Calculate</button>
+    <p id="result"></p>
+</section>
+<footer>
+    &copy; 2025 THE CRAVE-WELL. All rights reserved.
+</footer>
+<script>
+function calculateCalories() {
+    const age = parseInt(document.getElementById('age').value);
+    const weight = parseFloat(document.getElementById('weight').value);
+    const height = parseFloat(document.getElementById('height').value);
+    const activity = parseFloat(document.getElementById('activity').value);
+    const bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+    const calories = Math.round(bmr * activity);
+    document.getElementById('result').innerText = `Your daily calorie need is approximately ${calories} kcal.`;
+}
+</script>
+</body>
+</html>
